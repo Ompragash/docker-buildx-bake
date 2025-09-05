@@ -1,0 +1,13 @@
+# Dockerfile.onbuild-poetry
+ARG PYTHON_VERSION=3.11
+
+FROM python:${PYTHON_VERSION}-slim
+
+WORKDIR /app
+
+# Minimal Poetry install
+RUN pip install poetry
+
+ONBUILD COPY . /app
+
+CMD ["python3"]
