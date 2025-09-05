@@ -30,6 +30,10 @@ target "image" {
     "${ECR_SLUG}:${VERSION}-${ARCH}",
     "${GHCR_SLUG}:${VERSION}-${ARCH}"
   ]
+
+  # Example caching
+  cache-to   = ["type=registry,ref=${GHCR_SLUG}:test-cache,mode=max"]
+  cache-from = ["type=registry,ref=python:3.11-slim"]
 }
 
 # Onbuild variant
