@@ -13,11 +13,11 @@ variable "ARCH" {
 }
 
 variable "ECR_SLUG" {
-  default = "979895001312.dkr.ecr.us-east-1.amazonaws.com/${REPO}"
+  default = "979895001312.dkr.ecr.us-east-1.amazonaws.com/buildx-push-only"
 }
 
 variable "GHCR_SLUG" {
-  default = "ghcr.io/ompragash/${REPO}"
+  default = "ghcr.io/ompragash/docker-buildx-bake"
 }
 
 # Base image
