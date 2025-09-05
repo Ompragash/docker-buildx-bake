@@ -13,7 +13,7 @@ variable "ARCH" {
 }
 
 variable "ECR_SLUG" {
-  default = "979895001312.dkr.ecr.us-east-1.amazonaws.com/buildx-push-only"
+  default = "734046833946.dkr.ecr.ap-southeast-2.amazonaws.com/buildx-push-only"
 }
 
 variable "GHCR_SLUG" {
