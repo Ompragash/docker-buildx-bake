@@ -8,12 +8,16 @@ variable "TAG" {
   default = "0.0.1"
 }
 
+variable "ARCH" {
+  default = "amd64" # Harness stage will override with amd64 or arm64
+}
+
 variable "ECR_SLUG" {
   default = "979895001312.dkr.ecr.us-east-1.amazonaws.com/${REPO}"
 }
 
 variable "GHCR_SLUG" {
-  default = "ghcr.io/boost-insurance/${REPO}"
+  default = "ghcr.io/ompragash/${REPO}"
 }
 
 # Base image
@@ -21,10 +25,10 @@ target "image" {
   dockerfile = "Dockerfile"
   context    = "."
   tags = [
-    "${ECR_SLUG}:${VERSION}-${TAG}",
-    "${GHCR_SLUG}:${VERSION}-${TAG}",
-    "${ECR_SLUG}:${VERSION}",
-    "${GHCR_SLUG}:${VERSION}"
+    "${ECR_SLUG}:${VERSION}-${TAG}-${ARCH}",
+    "${GHCR_SLUG}:${VERSION}-${TAG}-${ARCH}",
+    "${ECR_SLUG}:${VERSION}-${ARCH}",
+    "${GHCR_SLUG}:${VERSION}-${ARCH}"
   ]
 }
 
@@ -33,10 +37,10 @@ target "onbuild" {
   inherits   = ["image"]
   dockerfile = "Dockerfile.onbuild"
   tags = [
-    "${ECR_SLUG}:${VERSION}-onbuild-${TAG}",
-    "${GHCR_SLUG}:${VERSION}-onbuild-${TAG}",
-    "${ECR_SLUG}:${VERSION}-onbuild",
-    "${GHCR_SLUG}:${VERSION}-onbuild"
+    "${ECR_SLUG}:${VERSION}-onbuild-${TAG}-${ARCH}",
+    "${GHCR_SLUG}:${VERSION}-onbuild-${TAG}-${ARCH}",
+    "${ECR_SLUG}:${VERSION}-onbuild-${ARCH}",
+    "${GHCR_SLUG}:${VERSION}-onbuild-${ARCH}"
   ]
 }
 
@@ -45,9 +49,9 @@ target "onbuild-poetry" {
   inherits   = ["image"]
   dockerfile = "Dockerfile.onbuild-poetry"
   tags = [
-    "${ECR_SLUG}:${VERSION}-onbuild-poetry-${TAG}",
-    "${GHCR_SLUG}:${VERSION}-onbuild-poetry-${TAG}",
-    "${ECR_SLUG}:${VERSION}-onbuild-poetry",
-    "${GHCR_SLUG}:${VERSION}-onbuild-poetry"
+    "${ECR_SLUG}:${VERSION}-onbuild-poetry-${TAG}-${ARCH}",
+    "${GHCR_SLUG}:${VERSION}-onbuild-poetry-${TAG}-${ARCH}",
+    "${ECR_SLUG}:${VERSION}-onbuild-poetry-${ARCH}",
+    "${GHCR_SLUG}:${VERSION}-onbuild-poetry-${ARCH}"
   ]
 }
